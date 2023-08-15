@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Text Classifier</title>
+    <style>
+      /* General styling */
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f0f0f0;
+      }
+      
+      .container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #ffffff;
+        border-radius: 5px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+      
+      h1,
+      h2 {
+        margin-bottom: 10px;
+      }
+      
+      label {
+        display: block;
+        margin-bottom: 5px;
+      }
+      
+      /* Form input styling */
+      #text {
+        width: 100%;
+        padding: 8px;
+        border: 1px solid #ccc;
+        border-radius: 3px;
+        font-size: 14px;
+      }
+      
+      input[type='submit'] {
+        margin-top: 10px;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 3px;
+        cursor: pointer;
+        font-size: 14px;
+      }
+      
+      /* Styled link styles */
+      a {
+        display: inline-block;
+        margin-top: 15px;
+        padding: 10px 20px;
+        border: 1px solid #007bff;
+        background-color: 'black';
+        color: 'white';
+        text-align: center;
+        text-decoration: none;
+        border-radius: 5px;
+        transition: background-color 0.3s, color 0.3s;
+      }
+      
+      /* Styles for links when hovering over them */
+      a:hover {
+        background-color: 'red';
+        border-color: #0056b3;
+      }
+      
+      /* Table styling */
+      table {
+        width: 100%;
+        margin-top: 20px;
+        border-collapse: collapse;
+      }
+      
+      th,
+      td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+      }
+      
+      th {
+        background-color: #f2f2f2;
+      }
+      
+      /* Your existing CSS styles ... */
+      table {
+        width: 100%;
+        margin-top: 20px;
+        border-collapse: collapse;
+        max-height: 300px; /* Set the maximum height of the table */
+        overflow: auto; /* Add overflow property for scrollbar */
+      }
+
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Text Classifier</h1>
+      <form action="/classify" method="post">
+        <label for="text">Enter text:</label>
+        <input type="text" id="text" name="text" required value="{{text}}"/>
+        <input type="submit" value="Classify" />
+      </form>
+      <a href="http://127.0.0.1:5000">Predict new product</a>
+      {% if prediction %}
+        <p>{{ prediction }}</p>
+      {% endif %}
+      <h2>Product Table</h2>
+      <table>
+        <tr>
+          <th>Product Description</th>
+        </tr>
+        {% for product in products %}
+          <tr>
+            <td>{{ product.description }}</td>
+          </tr>
+        {% endfor %}
+      </table>
+    </div>
+  </body>
+</html>
